@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<title>简易计算器</title>
+<style>
+*{margin: 0;padding: 0;}
+ul,li{list-style: none;}
+#counter{background-color: #f9f9f9; width: 700px; margin:50px auto;padding: 20px;}
+#num{font-size: 20px; height: 25px; margin-top: 10px;}
+#num li{float: left; margin-right: 20px;}
+#calc{font-size: 30px; height: 40px;}
+#handle li{float: left;margin-right: 15px;}
+input{width: 100px; height: 20px;}
+</style>
+<script>
+window.onload = function(){
+    function counter(){
+        calc.onclick = function(){
+            var num1 = Number(document.getElementById('num1').value);
+            var num2 = Number(document.getElementById('num2').value);
+            var choose = document.getElementById('choose');
+            var calc = document.getElementById('calc');
+            var result = document.getElementById('result');
+
+            // alert(choose.value[3]);
+            if( isNaN(num1) || isNaN(num2)) {
+                alert('请输入数字');
+            }
+            else{
+                switch(choose.value) {
+                    case '+':
+                        result.innerHTML = num1+num2;
+                        break;
+                    case '-':
+                        result.innerHTML = num1-num2;
+                        break;
+                    case '*':
+                        result.innerHTML = num1*num2;
+                        break;
+                    case '/':
+                        result.innerHTML = num1/num2;
+                        break;
+                        //default;
+                }
+            }  
+        }
+        
+    }
+    counter();
+}
+</script>
+</head>
+
+<body>
+       <div id="counter">
+           
+           <ul id="num">
+               <li><input type="text" value="" id="num1"></li>
+               <li>
+                   <select name="" id="choose">
+                       <option value="+">+</option>
+                       <option value="-">-</option>
+                       <option value="*">*</option>
+                       <option value="/">/</option>
+                   </select>
+               </li>
+               <li><input type="text" value="" id="num2"></li>
+               <li>
+                   <div id="calc">=</div>
+               </li>
+               <li><div id="result"></div></li>
+           </ul>
+       </div> 
+
+
+<!-- <input type="text">
+<select>
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+</select>
+<input type="text">
+<input type="button" value="aaa"> -->
+</body>
+</html>

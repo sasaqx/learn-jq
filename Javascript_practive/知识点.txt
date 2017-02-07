@@ -57,7 +57,7 @@ setTime()  以毫秒设置 Date 对象。
 	    2. setTimeout()  clearTimeOut()
 			3. innerHTML = ''
 			4. % 运算符 求余
-
+			5. parseInt() 取整数
 
 2-calc.html  日历 
 问题：if-else逻辑稍稍多点，容易绕
@@ -79,5 +79,13 @@ setTime()  以毫秒设置 Date 对象。
 	用iNow判断，onclick时间控制上下月份
 	每次执行函数，清空日历ul.innerHTML
 	获取当天，判断日期颜色
+
+3-简易计算器.html 
+用到知识点：1. switch case 判断
+		  2. 运算符
+		  3. Number() 将字符串数字转换成数字，隐形转换
+		  4. isNaN()判断是否数字
+		  
+
 
 
