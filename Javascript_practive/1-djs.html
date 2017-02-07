@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<title>倒计时</title>
+<style>
+*{margin:0;padding:0}
+#dateDiv{width:210px;margin:100px auto; overflow:hidden;border:1px solid #000;}
+#dateDiv .name{height:20px; line-height:20px;}
+#dateDiv .name li{height:20px;width:100%; text-align:center; color:blue;list-style:none; position:relative;}
+#dateDiv .name li .a1{ position:absolute;top:0;left:0;}
+#dateDiv .name li .a2{ position:absolute;top:0;right:0;}
+#dateDiv .week{height:30px; line-height:20px;border-bottom:1px solid #000;}
+#dateDiv .week li{ float:left;width:30px;height:30px; text-align:center; list-style:none;}
+#dateDiv .dateUl{ overflow:hidden; clear:both}
+#dateDiv .dateUl li{float:left;width:30px;height:30px; text-align:center; line-height:30px;list-style:none;}
+#dateDiv .dateUl li.ccc{ color:#ccc;}
+#dateDiv .dateUl li.red{ background:#F90}
+#dateDiv .dateUl li.sun{ color:#f00;}
+
+#innerTime{
+    color: red;
+}
+#djs{
+    font-weight: bold;
+    color: red;
+}
+</style>
+<script>
+// 问题：到时间清除定时器后，时间还往负数走
+window.onload = function (){
+    djs();
+    getMyTime();
+}
+function p(n){
+    return n<10 ? '0' + n : n;
+}
+function djs(){
+    //inner当前时间
+    var myDate = new Date();
+    var getY = document.getElementById('innerTime');
+    getY.innerHTML = myDate.getFullYear()+"年"+p((myDate.getMonth()+1))+"月"+ p(myDate.getDate()) + "日";
+}
+
+function getMyTime(){
+    //设置高考倒计时时间
+    var t ;
+    var myDate = new Date();
+    var getdjs = document.getElementById('djs');
+    var enDate = new Date('2017/6/7 14:45:00');
+    //转化成秒
+    var countDown = (enDate.getTime() - myDate.getTime())/1000;
+    var day = parseInt(countDown/(24*60*60));
+    var h = parseInt(countDown/(60*60)%24);
+    var m = parseInt(countDown/60%60);
+    var s = parseInt(countDown%60);
+    getdjs.innerHTML = p(day) + "天" + p(h) + '小时'+ p(m) + "分" + p(s) + "秒";
+    t = setTimeout('getMyTime()',500);
+    if(countDown<=0){
+        alert('高考到了，学子们加油~~');
+        clearTimeout(t);
+    }
+}
+
+
+</script>
+</head>
+
+<body>
+    <p>现在的时间是：<span id="innerTime"></span></p>
+    <div>距离高考还有<em id="djs"></em>天</div>
+
+        
+
+</body>
+
+</html>
