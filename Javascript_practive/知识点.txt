@@ -60,13 +60,20 @@ setTime()  以毫秒设置 Date 对象。
 
 
 2-calc.html  日历 
-问题：if-else逻辑稍稍多点，需多写几次
+问题：if-else逻辑稍稍多点，容易绕
+
 用到的知识：1. if else 判断
 	  2. 运算符 --  ++  
 	  3. appendChild 
 	  4. createElement();
 	  5. js内置的函数  注意 setDate(0) 能取到当月最后一天，获取总天数
 	  6. 事件 onclick()
+	  7. for循环
+封装日历：1. while循环表达式
+		2. 运算符 +=
+		3. 获取当前位置 offsetLeft  offsetTop
+		   offsetParent
+		4. 返回json数据
 
 关键点： 取到当月总天数和获取今天星期几，以便创建li个数; 	        
 	用iNow判断，onclick时间控制上下月份
