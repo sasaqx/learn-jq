@@ -51,7 +51,6 @@ setMilliseconds()  设置 Date 对象中的毫秒 (0 ~ 999)。
 setTime()  以毫秒设置 Date 对象。
 
 1-djs.html  时间倒计时 
-
 问题：清除定时器，时间负数，还在走...
 用到的知识点：1. js内置的时间函数 getTime() getFullYear()等等
 	    2. setTimeout()  clearTimeOut()
@@ -61,7 +60,6 @@ setTime()  以毫秒设置 Date 对象。
 
 2-calc.html  日历 
 问题：if-else逻辑稍稍多点，容易绕
-
 用到的知识：1. if else 判断
 	  2. 运算符 --  ++  
 	  3. appendChild 
@@ -83,9 +81,16 @@ setTime()  以毫秒设置 Date 对象。
 3-简易计算器.html 
 用到知识点：1. switch case 判断
 		  2. 运算符
-		  3. Number() 将字符串数字转换成数字，隐形转换
+		  3. Number() 将字符串数字转换成数字。隐形转换
 		  4. isNaN()判断是否数字
-		  
 
+4-随机彩票.html
+用到的知识点：1. 随机数 Math.random()
+			2. for循环，if判断 
+			3. 运用setTimeout setInterval实现随机滚动效果
+			4. 补0函数;找相同数字函数，如果出现相同数字，重新执行rnd();
+			5. 数组 
+			6. 运用了选择排序（还需弄懂几种常见方法：快速排序，插入排序，冒泡排序） 
+			
 
 

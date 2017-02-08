@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<title>随机彩票效果</title>
+<style>
+*{margin:0;padding:0}
+ul{ overflow:hidden}
+li{width:50px;height:50px; background:red; float:left; list-style:none; border-radius:50%; text-align:center; line-height:50px; font-size:30px; color:#fff;}
+.blue{ background:blue;}
+</style>
+<script>
+window.onload = function (){
+    var  aLi = document.getElementsByTagName('li');
+    var oBtn = document.getElementById('btn');
+
+    function fn(){
+        //获取元素
+        var  arr = [];
+        //随机产生6个红球
+        for(var i = 0;i<6;i++){
+            var number = rnd(1,33);
+            //判断有无相同
+            if(findSame(arr,number)){
+                arr[arr.length] = toDou(number);
+            }else{
+                i--;
+            }
+        }
+        //排序
+        for(var i = 0;i<arr.length;i++){
+            var minNum = arr[i];
+            var minPos = i;
+            for(var n = i+1; n<arr.length;n++){
+                if(arr[n]<minNum){
+                    minNum = arr[n];
+                    minPos = n;
+                }
+            }
+            var c = arr[i];
+            arr[i] = arr[minPos];
+            arr[minPos] = c;
+            //插入红球
+            aLi[i].innerHTML = arr[i];
+        }
+        //插入蓝色球
+        aLi[aLi.length-1].innerHTML = toDou(rnd(1,16));
+
+    }
+    // end function
+    fn();
+    oBtn.onclick = function(){
+        var timer = setInterval(fn,50);
+        setTimeout(function(){
+            clearTimeout(timer);
+        },1000);
+    }
+}
+//产生随机数 
+function rnd(n,m){
+    return parseInt(Math.random()*(m-n+1)+n);
+}
+//找相同数字
+function findSame(arr,n){
+    for(var i = 0;i<arr.length;i++){
+        if(arr[i]==n){
+            return false;
+        }
+    }
+    return true;
+}
+//补0
+function toDou(n){
+    return n<10 ? '0'+n :n;
+}
+</script>
+</head>
+
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li class="blue"></li>
+</ul>
+<input type="button" value="随机1注" id="btn">
+</body>
+</html>
