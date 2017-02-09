@@ -46,6 +46,17 @@
 用到的知识点：1. onmouseover() onmouseout()
 			2. 重点：this的用法 
 
+6=瀑布流.html
+用到的知识点：1. scrollTop scrollHeight
+			2. clientHeight
+			3. window.onscroll
+			4. 兼容点 
+				1).document.body.scrollTop 支持高级浏览器
+				2).document.documentElement.scrollTop 支持ie8以下浏览器
+			5.随机函数
+			6. 对比一下offsetHeight 和 scrollHeight的不同
+
+
 
 			
 
