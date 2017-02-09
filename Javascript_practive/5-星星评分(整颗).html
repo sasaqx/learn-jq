@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<title>星星评分</title>
+<style>
+*{margin:0;padding:0;}
+#pingfen{ width:135px;margin:10px auto;height:28px;}
+#pingfen li{ width:27px;float:left;height:28px; cursor:pointer;background:url(img/star.gif) no-repeat 0 0; list-style:none;}
+</style>
+<script>
+window.onload = function(){
+	var oPingfen = document.getElementById('pingfen');
+	var aLi = document.getElementsByTagName('li');
+	var score = oPingfen.getElementsByTagName('div')[0];
+	var prev = -1;
+
+	for(var i = 0;i<aLi.length;i++){
+		aLi[i].index = i;
+		aLi[i].onmouseover = function(){
+			liFn(this.index);
+		}
+		aLi[i].onclick = function(){
+			prev=this.index;
+			score.innerHTML = (this.index+1) + '分';
+			// alert((this.index+1)+"分");
+		}
+	}
+
+
+
+	oPingfen.onmouseout = function(){
+		liFn(prev);
+	}
+	function liFn(n){
+		for(var i = 0;i<aLi.length;i++){
+			if(i<=n){
+				aLi[i].style.background="url(img/star.gif) no-repeat 0 -29px";
+			}else{
+				aLi[i].style.background="url(img/star.gif) no-repeat 0 0";
+			}
+		}
+	}
+}
+
+</script>
+</head>
+
+<body>
+
+<div id="pingfen">
+	<ul>
+    	<li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div></div>
+</div>
+
+</body>
+
+</html>

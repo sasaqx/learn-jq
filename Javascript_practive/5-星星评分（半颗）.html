@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<title>半颗星星评分</title>
+<style>
+*{margin:0;padding:0;}
+#pingfen2{ width:140px;margin:10px auto;height:28px;}
+#pingfen2 li{ width:14px;float:left;height:28px; cursor:pointer;background:url(img/star.gif) no-repeat 0 0; list-style:none;}
+#pingfen2 li.li2{ width:14px;float:left;height:28px; cursor:pointer;background:url(img/star.gif) no-repeat -14px 0; list-style:none;}
+</style>
+<script>
+window.onload = function(){
+	var oPingfen2 = document.getElementById('pingfen2');
+	var aLi = oPingfen2.getElementsByTagName('li');
+	var pre = -1;
+	for(var i = 0;i<aLi.length;i++){
+		aLi[i].index = i;
+		aLi[i].onmouseover = function(){
+			for(var i=0;i<aLi.length;i++){
+				// this.index代表星星个数
+				if(i<=this.index){
+					//有分数
+					if(i%2==0){
+						aLi[i].style.background = 'url(img/star.gif) no-repeat 0 -29px';
+					}
+					else{
+						aLi[i].style.background = 'url(img/star.gif) no-repeat -14px -29px';
+					}
+				}
+				else{
+					//灰色
+					if(i%2==0){
+
+						aLi[i].style.background = 'url(img/star.gif) no-repeat 0 0';
+					}
+					else{
+						aLi[i].style.background = 'url(img/star.gif) no-repeat -14px 0';
+					}
+				}
+			};
+		}
+		aLi[i].onclick = function(){
+			pre = this.index;
+			alert((this.index+1)/2+'分');
+		}
+
+	}
+}
+</script>
+</head>
+
+<body>
+
+<div id="pingfen2">
+	<ul>
+    	<li></li>
+        <li class="li2"></li>
+        <li></li>
+        <li class="li2"></li>
+        <li></li>
+        <li class="li2"></li>
+        <li></li>
+        <li class="li2"></li>
+        <li></li>
+        <li class="li2"></li>
+    </ul>
+</div>
+
+</body>
+
+</html>
