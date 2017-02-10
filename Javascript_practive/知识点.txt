@@ -62,6 +62,11 @@
 			setInterval
 			主要是逻辑思维要清晰
 
+8-下拉菜单.html
+用到的知识点：1.onmouseover onmouseout 
+			2. for循环
+			3.重点 this
+			 
 
 
 

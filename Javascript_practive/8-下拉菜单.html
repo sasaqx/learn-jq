@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<title>菜单下拉</title>
+<style>
+*{margin:0;padding:0}
+ul li{list-style: none;}
+.menu1{height:35px;}
+.menu1 li{float:left; font-size: 14px; line-height: 35px;height: 35px; width: 60px;border:1px solid #ccc; text-align: center;}
+.menu2{ display: none; }
+.menu2 p{width: 60px; height: 20px;line-height: 20px;border:1px solid #ccc; text-align: center; cursor: pointer;position: relative;}
+.menu3{display: none; position: absolute; left: 60px; width: 60px;border:1px solid #ccc; top: 0;}
+</style>
+<script>
+window.onload = function(){
+    var oMenu1 = document.getElementById('menu');
+    var aLi1 = oMenu1.getElementsByTagName('li'); 
+
+    for(var i = 0;i<aLi1.length;i++){        
+        aLi1[i].onmouseover = function(){
+            var aMenu2 = this.getElementsByTagName('div')[0];
+            if(aMenu2){
+                aMenu2.style.display = 'block';
+                var aP = aMenu2.getElementsByTagName('p');
+                for(var i = 0;i<aP.length;i++){
+                    aP[i].onmouseover = function(){
+                        var oMenu3  = this.getElementsByTagName('span')[0];
+                        if(oMenu3){
+                           oMenu3.style.display = 'block'; 
+                        }
+                    }
+                }
+            }
+        }
+
+        aLi1[i].onmouseout=function()
+        {
+            var aMenu2 = this.getElementsByTagName('div')[0];
+            if(aMenu2){
+                aMenu2.style.display = 'none';
+
+
+                var aP = aMenu2.getElementsByTagName('p');
+                //alert(aP.length);
+                for(var i = 0;i<aP.length;i++){
+                    aP[i].onmouseout = function(){
+                        var oMenu3  = this.getElementsByTagName('span')[0];
+                        if(oMenu3){
+                           oMenu3.style.display = 'none'; 
+                        }
+                    }
+                }
+                 
+            }
+        };
+    }
+}
+</script>
+</head>
+
+<body>
+    <div id="menu" class="menu1">
+        <ul>
+            <li>首页</li>
+            <li>菜单1
+                <div class="menu2">
+                    <p>下拉菜单 
+                        <span class="menu3">三级菜单</span>
+                    </p>
+                    <p>下拉菜单</p>
+                    <p>下拉菜单</p>
+                </div>
+            </li>
+            <li>菜单2</li>
+            <li>菜单3
+                <div class="menu2">
+                    <p>下拉菜单</p>
+                    <p>下拉菜单<span class="menu3">三级菜单</span></p>
+                    <p>下拉菜单</p>
+                    <p>下拉菜单</p>
+                    <p>下拉菜单</p>
+                    <p>下拉菜单<span class="menu3">三级菜单</span></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
