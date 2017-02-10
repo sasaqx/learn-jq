@@ -66,7 +66,14 @@
 用到的知识点：1.onmouseover onmouseout 
 			2. for循环
 			3.重点 this
-			 
+
+9-图片轮播.html
+用到的知识点：1. 获取css表的样式属性
+			2. var in 循环  json
+			3. 向上取整：Math.ceil()  
+			   向下取整：Math.floor() 
+			   四舍五入：Math.round()
+
 
 
 

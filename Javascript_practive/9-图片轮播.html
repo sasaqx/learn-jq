@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<title></title>
+<style>
+*{ margin:0; padding:0;}
+li,ul{list-style:none;margin:0;padding:0}
+#wrap{width:400px;height:225px;margin:0 auto;position:relative;overflow:hidden}
+li{float:left}
+#tips li{margin:5px;border:1px solid #f60;width:20px;height:20px;line-height:1.25rem;text-align:center;color:#fff;cursor:pointer}
+.active{background:#f60}
+img{vertical-align:top;width:400px}
+#content{width:2400px;position:absolute;left:-1200px}
+#content li{float:left}
+#tips{position:absolute;right:20px;bottom:5px}
+
+</style>
+<script src="js/my-slide.js"></script>
+
+<script>
+window.onload = function(){
+    var wrap = document.getElementById('wrap');
+    var content = document.getElementById('content');
+    var tips = document.getElementById('tips');
+    var aLi = tips.getElementsByTagName('li');
+    var iNow = 0;
+    for(var i = 0;i<aLi.length;i++){
+        aLi[0].className = 'active';
+        content.style.left = 0 + 'px';
+        aLi[i].index = i;
+        aLi[i].onclick = function(){
+            iNow = this.index;
+            play();
+        }
+    }
+
+    function play(){
+        for(var i = 0;i<aLi.length;i++){
+            aLi[i].className = '';
+        }
+        aLi[iNow].className = 'active';
+        startMove(content, {
+            left: -400 * iNow
+        });
+    }
+    function autoPlay(){
+        iNow++;
+        if(iNow==aLi.length) iNow = 0;
+        play();
+    }
+    var timer = setInterval(autoPlay,1000);
+    wrap.onmouseover = function(){
+        clearInterval(timer);
+    }
+    wrap.onmouseout = function(){
+        timer = setInterval(autoPlay,1000);
+    }
+
+}
+
+</script>
+</head>
+
+<body>
+        <div id="wrap">
+        <ul id="content">
+            <li><img src="img/1.png" alt=""></li>
+            <li><img src="img/2.png" alt=""></li>
+            <li><img src="img/3.png" alt=""></li>
+            <li><img src="img/4.png" alt=""></li>
+            <li><img src="img/5.png" alt=""></li>
+            <li><img src="img/6.png" alt=""></li>
+        </ul>
+        <ul id="tips">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div></body>
+
+</html>
