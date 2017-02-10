@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<title>tab切换</title>
+<style>
+*{margin:0;padding:0}
+#box{width:500px;height:500px; border:1px solid #000;}
+#box input{padding:10px 20px;}
+#box input.active{ background:yellow}
+#box div{width:500px;height:460px; background:#ccc; font-size:30px; color:#fff; display:none;}
+#box div.show{ display:block}
+
+</style>
+<script>
+window.onload = function(){
+    var oBox = document.getElementById('box');
+    var aInput = document.getElementsByTagName('input');
+    var aDiv = oBox.getElementsByTagName('div');
+    for(var i = 0;i<aInput.length;i++){
+        aInput[i].index = i;
+        aInput[i].onclick = function(){
+            iNow = this.index;
+            fn();
+        }
+    }
+    var iNow = 0;
+    function next(){
+        iNow++;
+        if(iNow == aInput.length){
+            iNow=0;
+        }
+        fn();
+    }
+    function fn(){
+        for(var i = 0;i<aInput.length;i++){
+            aInput[i].className = '';
+            aDiv[i].className = ''
+        }
+        aInput[iNow].className = 'active';
+        aDiv[iNow].className = 'show';
+    }
+    var timer = setInterval(next,3500);
+    oBox.onmouseover = function(){
+        clearInterval(timer);
+    }
+    oBox.onmouseout = function(){
+        timer = setInterval(next,3500)
+    }
+}
+
+</script>
+</head>
+
+<body>
+<div id="box">
+    <input class="active" type="button" value="aa">
+    <input type="button" value="bb">
+    <input type="button" value="cc">
+    <input type="button" value="dd">
+    <div class="show">1111111</div>
+    <div>222222</div>
+    <div>33333</div>
+    <div>44444</div>
+</div>
+</body>
+
+</html>
