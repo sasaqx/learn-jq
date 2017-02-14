@@ -74,6 +74,16 @@
 			   向下取整：Math.floor() 
 			   四舍五入：Math.round()
 
+10-照片墙(拖拽).html
+比较综合的效果
+用到的知识：1. onmousedown() onmousemove() onmouseup()
+		  2. ev.clientX || event.clientX 
+		  	 ev.clientY || event.clientY
+		  3. releaseCapture();
+		  4. setCapture();
+		  5. Math.sqrt() //开方
+		  6. 找最小值，换位置
+
 
 
 

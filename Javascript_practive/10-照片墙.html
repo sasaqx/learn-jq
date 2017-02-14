@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<title>照片墙拖拽~~</title>
+<style>
+*{ margin:0; padding:0; list-style:none;}
+#ul1{ width:660px; margin:0 auto;}
+#ul1 li{ width:200px; height:200px; margin:5px 10px; float:left; }
+#ul1 li.box{ border:5px dashed #f60;}
+
+#ul1 li img{height: 100%;}
+</style>
+<script>
+window.onload = function(){
+    var oUL = document.getElementById('ul1');
+    var oBtn = document.getElementById('btn1');
+    var aLi = oUL.children;
+    var zIndex = 2;
+    var aPos = [];
+
+    oBtn.onclick = function(){
+        aPos.sort(function(){
+            return Math.random()-0.5;
+        });
+        for(var i = 0; i<aLi.length;i++){
+            aLi[i].style.left = aPos[aLi[i].index].left + 'px';
+            aLi[i].style.top = aPos[aLi[i].index].top + 'px';
+        }
+    }
+
+    //布局转化
+    for(var i = 0;i<aLi.length;i++){
+        aPos[i] = {left:aLi[i].offsetLeft,top:aLi[i].offsetTop}
+
+        aLi[i].style.left = aLi[i].offsetLeft + 'px';
+        aLi[i].style.top = aLi[i].offsetTop + 'px';
+    }
+    for(var i = 0;i<aLi.length;i++){
+        aLi[i].style.position = 'absolute';
+        aLi[i].style.margin = 0;
+    }
+    //拖拽 
+    for(var i = 0;i<aLi.length;i++){
+        drag(aLi[i]);
+        aLi[i].index=i;
+
+    }
+
+    //拖拽函数
+    function drag(obj){
+        obj.onmousedown = function(ev){
+            var oEvent = ev || event;
+
+            var disX = oEvent.clientX - obj.offsetLeft;
+            var disY= oEvent.clientY - obj.offsetTop;
+
+            obj.style.zIndex = zIndex++;
+
+            document.onmousemove=function(ev){
+                var oEvent=ev || event;
+                
+                obj.style.left=oEvent.clientX-disX+'px';
+                obj.style.top=oEvent.clientY-disY+'px';
+
+                for(var i = 0;i<aLi.length;i++){
+                    aLi[i].className = '';
+                } 
+                var oNear = findNear(obj);
+                if (oNear) {
+                    oNear.className = 'box'
+                }
+            }
+
+            document.onmouseup = function(){
+                document.onmousemove=null;
+                document.onmouseup=null;
+                obj.releaseCapture && obj.releaseCapture();
+                var oNear = findNear(obj);
+                if(oNear){
+                    obj.style.left = aPos[oNear.index].left + 'px';
+                    obj.style.top = aPos[oNear.index].top + 'px';
+                    oNear.style.left = aPos[obj.index].left + 'px';
+                    oNear.style.top = aPos[obj.index].top + 'px';
+                    oNear.className = '';
+
+                    // obj.index 
+                    // oNear.index
+                    // 换位置
+                    var tmp ;
+                    tmp = obj.index;
+                    obj.index = oNear.index;
+                    oNear.index = tmp;
+                }else{
+                    obj.style.left = aPos[obj.index].left+'px';
+                    obj.style.top = aPos[obj.index].top + 'px';
+                }
+            }
+            obj.setCapture && obj.setCapture();
+            return false;
+        }
+    }
+    
+    //对比，找到相近的
+    function collTest(obj,obj2){
+        var l1 = obj.offsetLeft;
+        var r1 = obj.offsetLeft+obj.offsetWidth;
+        var t1 = obj.offsetTop;
+        var b1 = obj.offsetTop + obj.offsetHeight;
+        
+        var l2 = obj2.offsetLeft;
+        var r2 = obj2.offsetLeft+obj2.offsetWidth;
+        var t2 = obj2.offsetTop;
+        var b2 = obj2.offsetTop + obj2.offsetHeight;
+
+        if(r1<l2 || l1>r2 || b1<t2 || t1>b2){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    //寻找最近的
+    function findNear(obj){
+        var imin  = 999999;
+        var iMinIndex = -1;
+
+        for(var i = 0;i<aLi.length;i++){
+            if(obj == aLi[i]){
+                continue;
+            }
+            if(collTest(obj,aLi[i])){
+                var dis = getDis(obj,aLi[i]);
+                if (dis<imin) {
+                    imin = dis;
+                    iMinIndex = i;
+                }
+            }
+        }
+        if (iMinIndex == -1) {
+            return null;
+        }else{
+            return aLi[iMinIndex];
+        }
+    }
+
+    // 获得距离c
+    function getDis(obj,obj2){
+        var a = obj.offsetLeft - obj2.offsetLeft;
+        var b = obj.offsetTop - obj2.offsetTop;
+        return Math.sqrt(a*a+b*b);
+    }
+
+}
+// end window
+</script>
+</head>
+
+<body>
+<input type="button" value="随机换位置" id="btn1" style="position:absolute; left:0; top:0;">
+<ul id="ul1">
+    <li><img src="img/1.png" width="200"></li>
+    <li><img src="img/2.png" width="200"></li>
+    <li><img src="img/3.png" width="200"></li>
+    <li><img src="img/4.png" width="200"></li>
+    <li><img src="img/5.png" width="200"></li>
+    <li><img src="img/6.png" width="200"></li>
+</ul>
+
+</body>
+</html>
