@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<title>自定义滚动条</title>
+<style>
+*{ margin:0; padding:0;}
+#box{ width:500px; height:500px; border:1px solid #000; position:absolute; left:50%; margin-left:-250px; top:50%; margin-top:-250px;}
+#right{ width:30px; height:100%; background:#ccc; position:absolute; right:0; top:0;}
+#bar{ width:100%; height:80px; background:red; position:absolute; left:0; top:0;}
+#left{ width:470px; height:100%; position:absolute; left:0; top:0; overflow:hidden;}
+#con{ position:absolute; left:0; top:0;}
+</style>
+<script>
+window.onload = function(){
+    var oBox = document.getElementById('box');
+    var oLeft = document.getElementById('left');
+    var oCon = document.getElementById('con');
+    var oRight = document.getElementById('right');
+    var oBar = document.getElementById('bar');
+
+    oBar.onmousedown=function(ev){
+        var oEvent = ev || event;
+        var disY = oEvent.clientY - oBar.offsetTop;
+
+        document.onmousemove = function(ev){
+            var oEvent = ev || event;
+            var t = oEvent.clientY - disY;
+            t<0 && (t=0);
+            t>oRight.offsetHeight - oBar.offsetHeight && (t = oRight.offsetHeight -oBar.offsetHeight);
+            oBar.style.top = t + 'px';
+            var scale = t/(oRight.offsetHeight - oBar.offsetHeight);
+            // document.title = scale;
+            oCon.style.top = -(oCon.offsetHeight -oLeft.offsetHeight)*scale +'px';
+        }
+        document.onmouseup = function(){
+            document.onmousemove = null;
+            document.onmouseup = null;
+            oBar.releaseCapture && oBar.releaseCapture();
+        }
+        oBar.setCapture && oBar.setCapture();
+        return false;
+    }
+    
+}
+</script>
+</head>
+
+<body>
+<div id="box">
+    <div id="left">
+        <div id="con">
+            22日下午，李克强在赤峰主持召开部分企业与金融机构负责人座谈会，让“实体经济”与“金融服务”面对面畅所欲言。李克强请参会者“直言不讳”、“只讲问题”，并不时提醒有关部门认真研究解决，对接他们的要求与措施，让金融切实成为实体经济的重要支撑。刘震 摄
+
+　　中新社赤峰5月23日电 (记者 李爱平)从棚户区、污水处理厂，再到职业教育学院……两个月时间内，中国国务院总理李克强先后两次赴内蒙古赤峰地区进行考察。
+
+　　令当地民众感触颇深的是，两次考察中李克强目光始终不离民生。这份对民生问题的关注，与其务实亲民的风格，给当地民众留下深刻印象。
+
+　　3月27日，李克强第一次来到内蒙古赤峰市，行程中一项重要议题是了解当地棚户区改造。
+
+　　赵玉荣是赤峰市红山区铁南街道办事处站西社区居委会主任，提起李克强走访棚户区的情形，她仍记忆犹新。
+
+　　赤峰市红山区铁南棚户区有1万6千多人，存在出行难、如厕难、吃水难、取暖难、排水难等诸多难题。当地居民对改造居住环境的愿望强烈。赵玉荣向记者回忆，当日李克强看到棚户区居民的居住环境后表示，一定要想方设法改善居民的生活环境。这句话令她和这里的居民心里感到“尤为温暖”。
+
+　　“听罢总理的一番话，在场的所有人都像吃了定心丸一般，对红山区铁南棚户区的改造前景充满了信心，盼着总理能再来。”赵玉荣此前接受中新社记者采访时说。
+
+　　令当地民众欣喜的是，5月22日，李克强在繁忙的工作之中，又一次到赤峰考察，而考察主题之一仍是“民生”。
+
+　　冯连国是赤峰市德润污水处理厂董事长，李克强此次考察时，他曾向总理介绍企业经营和有关设施的建设情况。
+
+　　在污水处理厂的施工工地，李克强说，“我们的城市亮丽光鲜，但地下基础设施仍是短板。‘面子’是城市的风貌，而‘里子’则是城市的良心。只有筑牢‘里子’，才能撑起‘面子’，这是百年大计。”
+
+　　谈及总理这番话，冯连国说，“面子”与“里子”的说法“太好了”，一下子点到了问题的实质。
+
+　　“赤峰市是中国缺水城市之一，污水处理厂不仅承担着当地城市饮用水的安全，更承担着如何减少西辽河流域污染、水体环境安全的重任。”冯连国说。
+
+　　他认为，总理对关乎民生的“城市污水处理”定位非常准确，指出了城市地下基础设施作为城市建设中“血管”的重要性。“我体会到总理对中国城市建设中存在的问题很了解，且能用短短的几句话给出症结所在，这让我们受益匪浅，也让我们深刻的体会到城市的良心的重要性。”冯连国如是说。
+
+　　就业是最大的民生问题，也是李克强一直的牵挂。此次再赴赤峰考察，李克强还到该市工业职业技术学院考察调研职业教育情况。
+
+　　实际上，李克强对职业教育非常关注，今年2月26日李克强主持召开国务院常务会议，部署加快发展现代职业教育，会议将发展职业教育视为促进转方式、调结构和民生改善的一项战略举措，并指出要“以改革的思路办好职业教育”。
+
+　　学院党委书记霍龙告诉记者，总理在和他短短交谈中，先后询问了学校的基本情况、学生的学费怎么交等情况。在霍龙看来，李总理关注职业教育、关注学生就业，事实上是关注了“最大的民生”。令他感动的是，李克强总理与他不长的谈话中，“每一句话都关注着民生”。
+
+　　而令他印象最深的是，总理对现场学生说，技不压身，学好技术，就有了走遍天下都不怕的本事，这是一辈子都打不破的铁饭碗，也可以回报社会、回馈家庭。
+
+　　霍龙认为，总理的话让他对中国的职业教育更有信心了。他觉得：“办好职业教育解决好学生的就业，是一名教育工作者最幸福的事情，我争取让更多的学子找到自己的铁饭碗。”
+            over==========================
+        </div>
+    </div>
+    <div id="right">
+        <div id="bar"></div>
+    </div>
+</div>
+
+</body>
+
+</html>
