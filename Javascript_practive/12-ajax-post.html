@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<title>Ajax-post</title>
+<style>
+    *{margin: 0;padding:0;}
+    input{border: 1px solid #000;}
+</style>
+<script src="js/ajax.js"></script>
+
+<script>
+window.onload = function(){
+	var oBtn = document.getElementById('btn1');
+    
+    oBtn.onclick = function(){
+        ajaxFn(
+            'post.php',
+            { a:1,b:2 },
+            3,
+            'POST',
+            function(str){
+                alert(str);
+            },
+            function(){
+                alert('失败');
+        });
+    }
+
+}
+</script>
+</head>
+
+<body>
+   <input type="button" value=" click here" id="btn1"> 
+</body>
+
+</html>
